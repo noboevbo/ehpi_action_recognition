@@ -99,5 +99,3 @@ ENV/
 
 .idea
 .idea/
-
-app_ofp/configs/training_state_config.ini

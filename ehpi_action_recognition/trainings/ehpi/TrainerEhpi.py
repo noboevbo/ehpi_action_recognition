@@ -71,7 +71,7 @@ class TrainerEhpi(object):
         sequence_results: Dict[int, List[int]] = {}
         label_count: Dict[int, int] = {}
         for i, data in enumerate(test_loader):
-            x = Variable(torch.tensor(data["x"], dtype=torch.float)).to(device)
+            x = Variable(data["x"]).to(device)
             y = data["y"].numpy()[0]
             seq = data["seq"].numpy()[0]
             outputs = model(x).data.cpu().numpy()[0]
