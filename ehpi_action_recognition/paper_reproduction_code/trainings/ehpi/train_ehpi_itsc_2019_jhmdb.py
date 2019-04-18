@@ -14,7 +14,7 @@ from nobos_torch_lib.models.action_recognition_models.ehpi_small_net import EHPI
 from torch.utils.data import DataLoader
 from torchvision.transforms import transforms
 
-from ehpi_action_recognition.trainings.ehpi.TrainerEhpi import TrainerEhpi
+from ehpi_action_recognition.trainings import trainer_ehpi
 
 foot_indexes: List[int] = [11, 14]
 knee_indexes: List[int] = [10, 13]
@@ -70,5 +70,5 @@ if __name__ == '__main__':
         train_config.num_epochs = 140
         train_config.checkpoint_epoch = 140
 
-        trainer = TrainerEhpi()
+        trainer = trainer_ehpi()
         trainer.train(train_loader, train_config, model=EHPISmallNet(21))
