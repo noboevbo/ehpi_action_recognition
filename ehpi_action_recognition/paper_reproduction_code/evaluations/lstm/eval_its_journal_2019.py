@@ -34,29 +34,10 @@ def eval_ehpi(ehpi_results: np.ndarray, plot_path: str, title: str):
     return labels, preds
 
 if __name__ == '__main__':
-    test_names = ["gt", "pose"]
+    test_names = ["GT", "Pose", "Both"]
     seeds = [0, 104, 123, 142, 200]
-    model_names = [
-        "ehpi_journal_2019_03_gt_seed_0_cp0200",
-        "ehpi_journal_2019_03_gt_seed_104_cp0200",
-        "ehpi_journal_2019_03_gt_seed_123_cp0200",
-        "ehpi_journal_2019_03_gt_seed_142_cp0200",
-        "ehpi_journal_2019_03_gt_seed_200_cp0200",
-        #
-        "ehpi_journal_2019_03_pose_seed_0_cp0200",
-        "ehpi_journal_2019_03_pose_seed_104_cp0200",
-        "ehpi_journal_2019_03_pose_seed_123_cp0200",
-        "ehpi_journal_2019_03_pose_seed_142_cp0200",
-        "ehpi_journal_2019_03_pose_seed_200_cp0200",
-        #
-        "ehpi_journal_2019_03_both_seed_0_cp0200",
-        "ehpi_journal_2019_03_both_seed_104_cp0200",
-        "ehpi_journal_2019_03_both_seed_123_cp0200",
-        "ehpi_journal_2019_03_both_seed_142_cp0200",
-        "ehpi_journal_2019_03_both_seed_200_cp0200",
-    ]
     # Test set
-    result_path = "/home/dennis/sync/cogsys/Projekte/ITS_JOURNAL_2019/results/its_journal_experiment_results/office"
+    result_path = "/home/dennis/sync/cogsys/Projekte/ITS_JOURNAL_2019/results/its_journal_experiment_results/lab"
     all_false_detected_seqs = {}
     for seed in seeds:
         all_false_detected_seqs[seed] = {}
@@ -69,37 +50,40 @@ if __name__ == '__main__':
         all_labels_ehpi = []
         all_preds_ehpi = []
         for seed in seeds:
-            model_name = "ehpi_journal_2019_03_{}_seed_{}_cp0200".format(test_name, seed)
+            model_name = "ehpi_journal_2019_03_{}_seed_{}_cp0200".format(test_name.lower(), seed)
             print("Model name: {}".format(model_name))
 
             ehpi_results = np.load(os.path.join(result_path, "{}_ehpis.npy".format(model_name)))
             seq_results = np.load(os.path.join(result_path, "{}_seqs.npy".format(model_name)))
             plot_path = get_create_path(os.path.join(result_path, model_name))
 
-            labels_seq, preds_seq, false_detected_seqs = eval_seq(seq_results, plot_path, "ActionSim (Sequences): confusion matrix (normalized)")
-            labels_ehpi, preds_ehpi = eval_ehpi(ehpi_results, plot_path, "ActionSim (Time Windows): confusion matrix (normalized)")
+            labels_seq, preds_seq, false_detected_seqs = eval_seq(seq_results, plot_path, "ActionSim ({}) [Seq]: confusion matrix (normalized)".format(test_name))
+            labels_ehpi, preds_ehpi = eval_ehpi(ehpi_results, plot_path, "ActionSim ({}) [TW]: confusion matrix (normalized)".format(test_name))
             all_labels_seq.extend(labels_seq)
             all_preds_seq.extend(preds_seq)
             all_false_detected_seqs[seed][test_name] = false_detected_seqs
             all_labels_ehpi.extend(labels_ehpi)
             all_preds_ehpi.extend(preds_ehpi)
-        plot_confusion_matrix(all_labels_seq, all_preds_seq, class_names, os.path.join(result_path, "confusion_matrix_seq.png"),
+        plot_confusion_matrix(all_labels_seq, all_preds_seq, class_names, os.path.join(result_path, "confusion_matrix_seq_{}.png".format(test_name.lower())),
                               normalize=True,
-                              title="ActionSim (Sequences): confusion matrix (normalized)")
-        plot_confusion_matrix(all_labels_ehpi, all_preds_ehpi, class_names, os.path.join(result_path, "confusion_matrix_ehpis.png"),
+                              title="ActionSim ({}) [Seq]: confusion matrix (normalized)".format(test_name))
+        plot_confusion_matrix(all_labels_ehpi, all_preds_ehpi, class_names, os.path.join(result_path, "confusion_matrix_ehpis_{}.png".format(test_name.lower())),
                               normalize=True,
-                              title="ActionSim (Time Windows): confusion matrix (normalized)")
+                              title="ActionSim ({}) [TW]: confusion matrix (normalized)".format(test_name))
     false_detections: str = ""
     for seed, result_dict in all_false_detected_seqs.items():
         false_detections += "\n\n################################################\n" \
                             "#################### Seed: {} #################\n" \
                             "################################################\n\n".format(seed)
         false_detections += "#########  GT  #########\n"
-        for gt_result in result_dict["gt"]:
+        for gt_result in result_dict["GT"]:
             false_detections += "Label: {} / Pred: {} / Seq: {}\n".format(gt_result[0], gt_result[1], gt_result[2])
         false_detections += "\n######### Pose #########\n"
-        for pose_result in result_dict["pose"]:
-            false_detections += "Label: {} / Pred: {} / Seq: {}\n".format(pose_result[0], pose_result[1], pose_result[2])
+        for tmp_result in result_dict["Pose"]:
+            false_detections += "Label: {} / Pred: {} / Seq: {}\n".format(tmp_result[0], tmp_result[1], tmp_result[2])
+        false_detections += "\n######### Both #########\n"
+        for tmp_result in result_dict["Both"]:
+            false_detections += "Label: {} / Pred: {} / Seq: {}\n".format(tmp_result[0], tmp_result[1], tmp_result[2])
     with open(os.path.join(result_path, "false_detections.txt"), "w") as txt_file:
         txt_file.write(false_detections)
     a = 2
