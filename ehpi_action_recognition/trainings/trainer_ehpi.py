@@ -28,14 +28,14 @@ class TrainerEhpi(object):
             train_config.learning_rate_scheduler(optimizer, epoch)
             losses = []
             for i, data in enumerate(train_loader):
-                x = Variable(torch.tensor(data["x"], dtype=torch.float)).to(device)
+                x = Variable(data["x"]).to(device)
                 y = Variable(torch.tensor(data["y"], dtype=torch.long)).to(device)
 
                 optimizer.zero_grad()
                 outputs = model(x)
                 loss = loss_func(outputs, y)
                 loss.backward()
-                losses.append(loss)
+                losses.append(loss.item())
                 optimizer.step()
 
             loss_total = sum(losses) / len(losses)

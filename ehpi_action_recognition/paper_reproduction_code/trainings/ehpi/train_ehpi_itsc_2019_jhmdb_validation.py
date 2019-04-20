@@ -15,7 +15,7 @@ from nobos_torch_lib.models.action_recognition_models.ehpi_small_net import EHPI
 from torch.utils.data import DataLoader, Subset
 from torchvision.transforms import transforms
 
-from ehpi_action_recognition.trainings.ehpi.TrainerEhpi import TrainerEhpi
+from ehpi_action_recognition.trainings import trainer_ehpi
 
 foot_indexes: List[int] = [11, 14]
 knee_indexes: List[int] = [10, 13]
@@ -92,7 +92,7 @@ if __name__ == '__main__':
                     train_config.num_epochs = 350
                     train_config.checkpoint_epoch = 10
 
-                    trainer = TrainerEhpi()
+                    trainer = trainer_ehpi()
                     losses, accuracies = trainer.train(train_loader, train_config, test_loader=val_loader, model=EHPISmallNet(21))
 
                     with open("losses_seed_{}.txt".format(seed), 'a') as the_file:

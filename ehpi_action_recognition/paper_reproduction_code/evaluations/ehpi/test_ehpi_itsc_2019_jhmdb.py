@@ -6,7 +6,7 @@ from nobos_torch_lib.models.action_recognition_models.ehpi_small_net import EHPI
 from torch.utils.data import DataLoader
 from torchvision.transforms import transforms
 
-from ehpi_action_recognition.evaluations.ehpi.TesterEhpi import TesterEhpi
+from ehpi_action_recognition.evaluations import tester_ehpi
 
 
 def get_test_set(image_size: ImageSize):
@@ -25,5 +25,5 @@ if __name__ == '__main__':
     test_set = get_test_set(ImageSize(320, 240))
     test_loader = DataLoader(test_set, batch_size=1, shuffle=False)
 
-    tester = TesterEhpi()
+    tester = tester_ehpi()
     tester.test(test_loader, weights_path, model=EHPISmallNet(21))
