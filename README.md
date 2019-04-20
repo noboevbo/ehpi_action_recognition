@@ -1,1 +1,1 @@
-TODO: Readme
+I'm currently cleaning up the code, in the next few days the repository and all dependencies (especially nobos_commons and nobos_torch_lib) should be fully available, I'll then update the README with instructions etc.
