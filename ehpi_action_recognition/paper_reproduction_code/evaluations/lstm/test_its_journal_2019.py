@@ -53,18 +53,18 @@ def get_test_set_office(image_size: ImageSize):
 
 if __name__ == '__main__':
     model_names = [
-        # "ehpi_journal_2019_03_gt_seed_0_cp0200",
-        # "ehpi_journal_2019_03_gt_seed_104_cp0200",
-        # "ehpi_journal_2019_03_gt_seed_123_cp0200",
-        # "ehpi_journal_2019_03_gt_seed_142_cp0200",
-        # "ehpi_journal_2019_03_gt_seed_200_cp0200",
-        # #
-        # "ehpi_journal_2019_03_pose_seed_0_cp0200",
-        # "ehpi_journal_2019_03_pose_seed_104_cp0200",
-        # "ehpi_journal_2019_03_pose_seed_123_cp0200",
-        # "ehpi_journal_2019_03_pose_seed_142_cp0200",
-        # "ehpi_journal_2019_03_pose_seed_200_cp0200",
-
+        "ehpi_journal_2019_03_gt_seed_0_cp0200",
+        "ehpi_journal_2019_03_gt_seed_104_cp0200",
+        "ehpi_journal_2019_03_gt_seed_123_cp0200",
+        "ehpi_journal_2019_03_gt_seed_142_cp0200",
+        "ehpi_journal_2019_03_gt_seed_200_cp0200",
+        #
+        "ehpi_journal_2019_03_pose_seed_0_cp0200",
+        "ehpi_journal_2019_03_pose_seed_104_cp0200",
+        "ehpi_journal_2019_03_pose_seed_123_cp0200",
+        "ehpi_journal_2019_03_pose_seed_142_cp0200",
+        "ehpi_journal_2019_03_pose_seed_200_cp0200",
+        #
         "ehpi_journal_2019_03_both_seed_0_cp0200",
         "ehpi_journal_2019_03_both_seed_104_cp0200",
         "ehpi_journal_2019_03_both_seed_123_cp0200",

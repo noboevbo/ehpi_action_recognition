@@ -96,8 +96,8 @@ if __name__ == '__main__':
     batch_size = 256
     seeds = [0, 104, 123, 142, 200]
     datasets = {
-        # "gt": get_training_set_gt,
-        # "pose": get_training_posealgo,
+        "gt": get_training_set_gt,
+        "pose": get_training_posealgo,
         "both": get_training_set_both
     }
     for seed in seeds:
