@@ -25,7 +25,7 @@ def get_training_set(image_size: ImageSize):
     num_joints = 15
     left_indexes: List[int] = [3, 4, 5, 9, 10, 11]
     right_indexes: List[int] = [6, 7, 8, 12, 13, 14]
-    return EhpiDataset("/media/disks/beta/datasets/ehpi/JHMDB_ITSC-1-GT/",
+    return EhpiDataset("/media/disks/beta/datasets/ehpi/JHMDB_ITSC-1/",
                        transform=transforms.Compose([
                            RemoveJointsOutsideImgEhpi(image_size),
                            RemoveJointsEhpi(indexes_to_remove=foot_indexes, indexes_to_remove_2=knee_indexes,

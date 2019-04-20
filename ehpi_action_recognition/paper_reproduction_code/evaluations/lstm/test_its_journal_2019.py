@@ -20,17 +20,11 @@ def get_test_set_lab(image_size: ImageSize):
     EhpiLSTMDataset("/media/disks/beta/datasets/ehpi/JOURNAL_2019_03_TEST_VUE01_30FPS",
                              transform=transforms.Compose([
                                  RemoveJointsOutsideImgEhpi(image_size),
-                                 # ScaleEhpi(image_size),
-                                 # TranslateEhpi(image_size),
-                                 # FlipEhpi(left_indexes=left_indexes, right_indexes=right_indexes),
                                  NormalizeEhpi(image_size)
                              ]), num_joints=num_joints, dataset_part=DatasetPart.TEST),
     EhpiLSTMDataset("/media/disks/beta/datasets/ehpi/JOURNAL_2019_03_TEST_VUE02_30FPS",
                              transform=transforms.Compose([
                                  RemoveJointsOutsideImgEhpi(image_size),
-                                 # ScaleEhpi(image_size),
-                                 # TranslateEhpi(image_size),
-                                 # FlipEhpi(left_indexes=left_indexes, right_indexes=right_indexes),
                                  NormalizeEhpi(image_size)
                              ]), num_joints=num_joints, dataset_part=DatasetPart.TEST),
     ]

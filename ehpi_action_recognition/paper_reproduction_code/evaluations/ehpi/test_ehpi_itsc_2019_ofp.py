@@ -20,17 +20,11 @@ def get_test_set(image_size: ImageSize):
 
 if __name__ == '__main__':
     model_names = [
-        # "itsc2019_full_seed_0_cp0140",
-        # # "itsc2019_sim_seed_0_cp0140",
-        # # "itsc2019_sim_gt_only_seed_0_cp0140",
-        # # "itsc2019_sim_pose_algo_only_seed_0_cp0140",
-        # # "itsc2019_wo_sim_seed_0_cp0140",
-
-        "itsc2019_full_seed_104_cp0140",
-        # "itsc2019_sim_seed_104_cp0140",
-        # "itsc2019_sim_gt_only_seed_104_cp0140",
-        # "itsc2019_sim_pose_algo_only_seed_104_cp0140",
-        # "itsc2019_wo_sim_seed_104_cp0140"
+        "itsc2019_full_seed_0_cp0140",
+        "itsc2019_sim_seed_0_cp0140",
+        "itsc2019_sim_gt_only_seed_0_cp0140",
+        "itsc2019_sim_pose_algo_only_seed_0_cp0140",
+        "itsc2019_wo_sim_seed_0_cp0140",
     ]
     # Test set
     test_set = get_test_set(ImageSize(1280, 720))

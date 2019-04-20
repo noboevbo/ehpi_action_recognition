@@ -1,3 +1,4 @@
+import os
 import random
 from typing import List
 
@@ -16,69 +17,71 @@ from ehpi_action_recognition.paper_reproduction_code.models.ehpi_lstm import Ehp
 from ehpi_action_recognition.trainings.trainer_ehpi import TrainerEhpi
 
 
-def get_training_set_gt(image_size: ImageSize):
+def get_training_set_gt(dataset_path: str, image_size: ImageSize):
     num_joints = 15
     left_indexes: List[int] = [3, 4, 5, 9, 10, 11]
     right_indexes: List[int] = [6, 7, 8, 12, 13, 14]
 
     datasets: List[EhpiLSTMDataset] = [
-    EhpiLSTMDataset("/media/disks/beta/datasets/ehpi/JOURNAL_2019_03_GT_30fps",
-                             transform=transforms.Compose([
-                                 RemoveJointsOutsideImgEhpi(image_size),
-                                 ScaleEhpi(image_size),
-                                 TranslateEhpi(image_size),
-                                 FlipEhpi(left_indexes=left_indexes, right_indexes=right_indexes),
-                                 NormalizeEhpi(image_size)
-                             ]), num_joints=num_joints),
-        ]
+        EhpiLSTMDataset(os.path.join(dataset_path, "JOURNAL_2019_03_GT_30fps"),
+                        transform=transforms.Compose([
+                            RemoveJointsOutsideImgEhpi(image_size),
+                            ScaleEhpi(image_size),
+                            TranslateEhpi(image_size),
+                            FlipEhpi(left_indexes=left_indexes, right_indexes=right_indexes),
+                            NormalizeEhpi(image_size)
+                        ]), num_joints=num_joints),
+    ]
     for dataset in datasets:
         dataset.print_label_statistics()
 
     return ConcatDataset(datasets)
 
-def get_training_posealgo(image_size: ImageSize):
+
+def get_training_posealgo(dataset_path: str, image_size: ImageSize):
     num_joints = 15
     left_indexes: List[int] = [3, 4, 5, 9, 10, 11]
     right_indexes: List[int] = [6, 7, 8, 12, 13, 14]
 
     datasets: List[EhpiLSTMDataset] = [
-    EhpiLSTMDataset("/media/disks/beta/datasets/ehpi/JOURNAL_2019_03_POSEALGO_30fps",
-                             transform=transforms.Compose([
-                                 RemoveJointsOutsideImgEhpi(image_size),
-                                 ScaleEhpi(image_size),
-                                 TranslateEhpi(image_size),
-                                 FlipEhpi(left_indexes=left_indexes, right_indexes=right_indexes),
-                                 NormalizeEhpi(image_size)
-                             ]), num_joints=num_joints),
-        ]
+        EhpiLSTMDataset(os.path.join(dataset_path, "JOURNAL_2019_03_POSEALGO_30fps"),
+                        transform=transforms.Compose([
+                            RemoveJointsOutsideImgEhpi(image_size),
+                            ScaleEhpi(image_size),
+                            TranslateEhpi(image_size),
+                            FlipEhpi(left_indexes=left_indexes, right_indexes=right_indexes),
+                            NormalizeEhpi(image_size)
+                        ]), num_joints=num_joints),
+    ]
     for dataset in datasets:
         dataset.print_label_statistics()
 
     return ConcatDataset(datasets)
 
-def get_training_set_both(image_size: ImageSize):
+
+def get_training_set_both(dataset_path: str, image_size: ImageSize):
     num_joints = 15
     left_indexes: List[int] = [3, 4, 5, 9, 10, 11]
     right_indexes: List[int] = [6, 7, 8, 12, 13, 14]
 
     datasets: List[EhpiLSTMDataset] = [
-    EhpiLSTMDataset("/media/disks/beta/datasets/ehpi/JOURNAL_2019_03_POSEALGO_30fps",
-                             transform=transforms.Compose([
-                                 RemoveJointsOutsideImgEhpi(image_size),
-                                 ScaleEhpi(image_size),
-                                 TranslateEhpi(image_size),
-                                 FlipEhpi(left_indexes=left_indexes, right_indexes=right_indexes),
-                                 NormalizeEhpi(image_size)
-                             ]), num_joints=num_joints),
-    EhpiLSTMDataset("/media/disks/beta/datasets/ehpi/JOURNAL_2019_03_GT_30fps",
-                             transform=transforms.Compose([
-                                 RemoveJointsOutsideImgEhpi(image_size),
-                                 ScaleEhpi(image_size),
-                                 TranslateEhpi(image_size),
-                                 FlipEhpi(left_indexes=left_indexes, right_indexes=right_indexes),
-                                 NormalizeEhpi(image_size)
-                             ]), num_joints=num_joints),
-        ]
+        EhpiLSTMDataset(os.path.join(dataset_path, "JOURNAL_2019_03_POSEALGO_30fps"),
+                        transform=transforms.Compose([
+                            RemoveJointsOutsideImgEhpi(image_size),
+                            ScaleEhpi(image_size),
+                            TranslateEhpi(image_size),
+                            FlipEhpi(left_indexes=left_indexes, right_indexes=right_indexes),
+                            NormalizeEhpi(image_size)
+                        ]), num_joints=num_joints),
+        EhpiLSTMDataset(os.path.join(dataset_path, "JOURNAL_2019_03_GT_30fps"),
+                        transform=transforms.Compose([
+                            RemoveJointsOutsideImgEhpi(image_size),
+                            ScaleEhpi(image_size),
+                            TranslateEhpi(image_size),
+                            FlipEhpi(left_indexes=left_indexes, right_indexes=right_indexes),
+                            NormalizeEhpi(image_size)
+                        ]), num_joints=num_joints),
+    ]
     for dataset in datasets:
         dataset.print_label_statistics()
 
@@ -93,6 +96,8 @@ def set_seed(seed):
 
 
 if __name__ == '__main__':
+    journal_dataset_path = "/media/disks/beta/datasets/ehpi"
+    model_dir = "/media/disks/beta/models/ehpi_journal_2019_03_v2"
     batch_size = 256
     seeds = [0, 104, 123, 142, 200]
     datasets = {
@@ -103,12 +108,11 @@ if __name__ == '__main__':
     for seed in seeds:
         for dataset_name, get_dataset in datasets.items():
             set_seed(seed)
-            train_set = get_dataset(ImageSize(1280, 720))
+            train_set = get_dataset(journal_dataset_path, ImageSize(1280, 720))
             train_loader = DataLoader(train_set, batch_size=batch_size, shuffle=True, num_workers=1)
 
             # config
-            train_config = TrainingConfigBase("ehpi_journal_2019_03_{}_seed_{}".format(dataset_name, seed),
-                                              "/media/disks/beta/models/ehpi_journal_2019_03_v2")
+            train_config = TrainingConfigBase("ehpi_journal_2019_03_{}_seed_{}".format(dataset_name, seed), model_dir)
             train_config.weight_decay = 0
             train_config.num_epochs = 200
 
