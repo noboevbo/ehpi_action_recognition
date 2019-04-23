@@ -98,7 +98,7 @@ And here to the evaluation code: [ITS Evaluation Code](ehpi_action_recognition/p
 
 # Citation
 Please cite the following papers if this code is helpful in your research.
-Currently the publications to this repository are submitted, but not yet accepted or published. I will update the entries as soon as I have feedback about the submissions. A preprint for the ITSC 2019 publication is available on arxiv.org.
+Currently the publications to this repository are submitted, but not yet accepted or published. I will update the entries as soon as I have feedback about the submissions. A preprint for the ITSC 2019 publication is available [here](https://arxiv.org/abs/1904.09140) on arxiv.org.
 
 ```bash
 @inproceedings{Ludl2019SimpleYE,
