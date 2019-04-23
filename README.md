@@ -1,5 +1,11 @@
-I'm currently cleaning up the code, in the next few days the repository and all dependencies (especially nobos_commons and nobos_torch_lib) should be fully available, I'll then update the README with instructions etc.
+This repository contains the code for our real-time pose based action recognition pipeline, which was introduced in our paper [Simple yet efficient real-time pose-based action recognition](https://arxiv.org/abs/1904.09140) (submitted to ITSC 2019, as of 2019-04-23). There is also paper result reconstruction code for another publication (submitted to Transactions on ITS SE ITSC 2018, as of 2019-04-23), XYZ, based on an alternative approach using LSTM.
 
+The approach is based on encoding human poses over a period of time in an image-like data format (Encoded Human Pose Images) that can then be classified using standard CNNs. The entire pipeline is lightweight and runs 20-60 FPS, depending on settings. It was tested on an XMG Ultra 17 Laptop with an i7-8700 Desktop CPU, NVIDIA GTX1080 GPU, 32GB RAM using KDE Neon (Ubuntu 18.04) and CUDA 10.0 with CUDNN 7.5.
+
+Visualization of our use case evaluation sequence: https://youtu.be/xSIaUd_nJMM
+Subsequence with EHPI overlay and training data examples: https://youtu.be/UqzLqjS0OR4
+
+![EHPI Example](/images/ehpi_example.jpg)
 
 # Installation
 ## Prerequisites
