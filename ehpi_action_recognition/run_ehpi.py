@@ -3,6 +3,8 @@ from collections import deque
 from operator import itemgetter
 from typing import Dict, List, Tuple
 
+from ehpi_action_recognition.config import pose_resnet_config, pose_visualization_config, ehpi_model_state_file
+
 import cv2
 import numpy as np
 import torch.utils.data.distributed
@@ -25,7 +27,7 @@ from nobos_torch_lib.models.detection_models.shufflenet_v2 import ShuffleNetV2
 from nobos_torch_lib.models.pose_estimation_2d_models import pose_resnet
 from scipy.special import softmax
 
-from ehpi_action_recognition.config import pose_resnet_config, pose_visualization_config
+
 from ehpi_action_recognition.networks.action_recognition_nets.action_rec_net_ehpi import ActionRecNetEhpi
 from ehpi_action_recognition.networks.pose_estimation_2d_nets.pose2d_net_resnet import Pose2DNetResnet
 
@@ -60,7 +62,6 @@ def argmax(items):
 if __name__ == '__main__':
     # Settings
     skeleton_type = SkeletonStickman
-    ehpi_model_file = "/home/dennis/sync/cogsys/models/OFP_PROD/2019_03_15_FINAL.pth"
     image_size = ImageSize(width=640, height=360)
     heatmap_size = ImageSize(width=64, height=114)
     camera_number = 0
@@ -89,7 +90,7 @@ if __name__ == '__main__':
 
     # Action Network
     action_model = ShuffleNetV2(input_size=32, n_class=3)
-    state_dict = torch.load(ehpi_model_file)
+    state_dict = torch.load(ehpi_model_state_file)
     action_model.load_state_dict(state_dict)
     action_model.cuda()
     action_model.eval()

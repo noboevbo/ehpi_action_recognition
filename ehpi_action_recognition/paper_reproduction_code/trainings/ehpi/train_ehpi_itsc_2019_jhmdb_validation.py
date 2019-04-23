@@ -15,7 +15,7 @@ from nobos_torch_lib.models.action_recognition_models.ehpi_small_net import EHPI
 from torch.utils.data import DataLoader, Subset
 from torchvision.transforms import transforms
 
-from ehpi_action_recognition.trainings import trainer_ehpi
+from ehpi_action_recognition import trainer_ehpi
 
 foot_indexes: List[int] = [11, 14]
 knee_indexes: List[int] = [10, 13]

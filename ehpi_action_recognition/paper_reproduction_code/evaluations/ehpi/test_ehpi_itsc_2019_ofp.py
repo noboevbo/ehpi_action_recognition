@@ -6,7 +6,7 @@ from nobos_torch_lib.models.detection_models.shufflenet_v2 import ShuffleNetV2
 from torch.utils.data import DataLoader
 from torchvision.transforms import transforms
 
-from ehpi_action_recognition.evaluations.tester_ehpi import TesterEhpi
+from ehpi_action_recognition.tester_ehpi import TesterEhpi
 
 
 def get_test_set(image_size: ImageSize):

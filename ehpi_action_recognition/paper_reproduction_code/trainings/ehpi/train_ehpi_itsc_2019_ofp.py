@@ -16,7 +16,7 @@ from nobos_torch_lib.models.detection_models.shufflenet_v2 import ShuffleNetV2
 from torch.utils.data import ConcatDataset, DataLoader
 from torchvision.transforms import transforms
 
-from ehpi_action_recognition.trainings.trainer_ehpi import TrainerEhpi
+from ehpi_action_recognition.trainer_ehpi import TrainerEhpi
 
 foot_indexes: List[int] = [11, 14]
 knee_indexes: List[int] = [10, 13]

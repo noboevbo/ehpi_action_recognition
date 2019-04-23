@@ -99,3 +99,6 @@ ENV/
 
 .idea
 .idea/
+
+ehpi_action_recognition/data/*
+logs/

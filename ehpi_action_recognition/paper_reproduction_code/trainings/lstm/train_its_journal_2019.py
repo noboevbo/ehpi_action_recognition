@@ -6,7 +6,7 @@ import numpy as np
 import torch
 from nobos_commons.data_structures.dimension import ImageSize
 from nobos_torch_lib.configs.training_configs.training_config_base import TrainingConfigBase
-from nobos_torch_lib.datasets.action_recognition_datasets.ehpi_dataset import EhpiDataset, ScaleEhpi, TranslateEhpi, \
+from nobos_torch_lib.datasets.action_recognition_datasets.ehpi_dataset import ScaleEhpi, TranslateEhpi, \
     FlipEhpi, NormalizeEhpi, \
     RemoveJointsOutsideImgEhpi
 from torch.utils.data import ConcatDataset, DataLoader
@@ -14,7 +14,7 @@ from torchvision.transforms import transforms
 
 from ehpi_action_recognition.paper_reproduction_code.datasets.ehpi_lstm_dataset import EhpiLSTMDataset
 from ehpi_action_recognition.paper_reproduction_code.models.ehpi_lstm import EhpiLSTM
-from ehpi_action_recognition.trainings.trainer_ehpi import TrainerEhpi
+from ehpi_action_recognition.trainer_ehpi import TrainerEhpi
 
 
 def get_training_set_gt(dataset_path: str, image_size: ImageSize):
