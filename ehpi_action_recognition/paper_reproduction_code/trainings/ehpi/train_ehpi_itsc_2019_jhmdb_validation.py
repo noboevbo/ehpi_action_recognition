@@ -10,8 +10,8 @@ from nobos_torch_lib.configs.training_configs.training_config_base import Traini
 from nobos_torch_lib.datasets.action_recognition_datasets.ehpi_dataset import EhpiDataset, FlipEhpi, ScaleEhpi, \
     TranslateEhpi, NormalizeEhpi, RemoveJointsOutsideImgEhpi, RemoveJointsEhpi
 from nobos_torch_lib.datasets.samplers.imbalanced_dataset_sampler import ImbalancedDatasetSampler
-from nobos_torch_lib.learning_rate_schedulers.learning_rate_scheduler_expotential import \
-    LearningRateSchedulerExpotential
+from nobos_torch_lib.learning_rate_schedulers.learning_rate_scheduler_stepwise import \
+    LearningRateSchedulerStepwise
 from nobos_torch_lib.models.action_recognition_models.ehpi_small_net import EHPISmallNet
 from torch.utils.data import DataLoader, Subset
 from torchvision.transforms import transforms
@@ -89,7 +89,7 @@ if __name__ == '__main__':
                     # config
                     train_config = TrainingConfigBase("ehpi_jhmdb_{}".format(seed), os.path.join(models_dir, "val_jhmdb"))
                     train_config.learning_rate = lr
-                    train_config.learning_rate_scheduler = LearningRateSchedulerExpotential(lr_decay=0.1, lr_decay_epoch=50)
+                    train_config.learning_rate_scheduler = LearningRateSchedulerStepwise(lr_decay=0.1, lr_decay_epoch=50)
                     train_config.weight_decay = weight_decay
                     train_config.num_epochs = 350
                     train_config.checkpoint_epoch = 10

@@ -10,8 +10,8 @@ from nobos_torch_lib.configs.training_configs.training_config_base import Traini
 from nobos_torch_lib.datasets.action_recognition_datasets.ehpi_dataset import EhpiDataset, RemoveJointsOutsideImgEhpi, \
     ScaleEhpi, TranslateEhpi, FlipEhpi, NormalizeEhpi, RemoveJointsEhpi
 from nobos_torch_lib.datasets.samplers.imbalanced_dataset_sampler import ImbalancedDatasetSampler
-from nobos_torch_lib.learning_rate_schedulers.learning_rate_scheduler_expotential import \
-    LearningRateSchedulerExpotential
+from nobos_torch_lib.learning_rate_schedulers.learning_rate_scheduler_stepwise import \
+    LearningRateSchedulerStepwise
 from nobos_torch_lib.models.detection_models.shufflenet_v2 import ShuffleNetV2
 from torch.utils.data import ConcatDataset, DataLoader
 from torchvision.transforms import transforms
@@ -323,7 +323,7 @@ if __name__ == '__main__':
             # config
             train_config = TrainingConfigBase("itsc2019_{}_seed_{}".format(dataset_name, seed),
                                               os.path.join(models_dir, "train_use_case"))
-            train_config.learning_rate_scheduler = LearningRateSchedulerExpotential(lr_decay=0.1, lr_decay_epoch=50)
+            train_config.learning_rate_scheduler = LearningRateSchedulerStepwise(lr_decay=0.1, lr_decay_epoch=50)
             train_config.learning_rate = 0.05
             train_config.weight_decay = 5e-4
             train_config.num_epochs = 140

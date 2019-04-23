@@ -3,7 +3,5 @@ torch
 torchvision
 configobj
 matplotlib
-cerberus
 sklearn
 scipy
-tables
