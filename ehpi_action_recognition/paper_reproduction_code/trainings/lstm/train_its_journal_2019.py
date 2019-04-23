@@ -12,6 +12,7 @@ from nobos_torch_lib.datasets.action_recognition_datasets.ehpi_dataset import Sc
 from torch.utils.data import ConcatDataset, DataLoader
 from torchvision.transforms import transforms
 
+from ehpi_action_recognition.config import models_dir, ehpi_dataset_path
 from ehpi_action_recognition.paper_reproduction_code.datasets.ehpi_lstm_dataset import EhpiLSTMDataset
 from ehpi_action_recognition.paper_reproduction_code.models.ehpi_lstm import EhpiLSTM
 from ehpi_action_recognition.trainer_ehpi import TrainerEhpi
@@ -96,8 +97,6 @@ def set_seed(seed):
 
 
 if __name__ == '__main__':
-    journal_dataset_path = "/media/disks/beta/datasets/ehpi"
-    model_dir = "/media/disks/beta/models/ehpi_journal_2019_03_v2"
     batch_size = 256
     seeds = [0, 104, 123, 142, 200]
     datasets = {
@@ -108,11 +107,11 @@ if __name__ == '__main__':
     for seed in seeds:
         for dataset_name, get_dataset in datasets.items():
             set_seed(seed)
-            train_set = get_dataset(journal_dataset_path, ImageSize(1280, 720))
+            train_set = get_dataset(ehpi_dataset_path, ImageSize(1280, 720))
             train_loader = DataLoader(train_set, batch_size=batch_size, shuffle=True, num_workers=1)
 
             # config
-            train_config = TrainingConfigBase("ehpi_journal_2019_03_{}_seed_{}".format(dataset_name, seed), model_dir)
+            train_config = TrainingConfigBase("ehpi_journal_2019_03_{}_seed_{}".format(dataset_name, seed), os.path.join(models_dir, "train_its_journal"))
             train_config.weight_decay = 0
             train_config.num_epochs = 200
 

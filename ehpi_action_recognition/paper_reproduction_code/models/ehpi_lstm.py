@@ -19,5 +19,4 @@ class EhpiLSTM(nn.Module):
         c0 = torch.zeros(self.num_layers, x.size(0), self.hidden_dim).to(device)
         lstm_out, _ = self.lstm(x, (h0, c0))
         y = self.hidden2label(lstm_out)
-        # log_probs = F.log_softmax(y)
         return y[:, -1, :]
