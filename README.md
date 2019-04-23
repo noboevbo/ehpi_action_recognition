@@ -2,6 +2,7 @@ This repository contains the code for our real-time pose based action recognitio
 
 The approach is based on encoding human poses over a period of time in an image-like data format (Encoded Human Pose Images) that can then be classified using standard CNNs. The entire pipeline is lightweight and runs 20-60 FPS, depending on settings. It was tested on an XMG Ultra 17 Laptop with an i7-8700 Desktop CPU, NVIDIA GTX1080 GPU, 32GB RAM using KDE Neon (Ubuntu 18.04) and CUDA 10.0 with CUDNN 7.5.
 
+We currently provide example code and a pre-trained model for our use-case action recognition which required us to differentiate between the actions idle, walk and wave. We provide training code etc. which can be used to train your own models with different / more actions. To generate a EHPI see the feature_vec_producer for an EHPI vector / the action recognition network. I plan to provide source code for our database powered dataset management tool which contains importers and exporters for different datasets / formats, but I need a little cleanup time for this.
 - Visualization of our use case evaluation sequence: https://youtu.be/xSIaUd_nJMM
 - Subsequence with EHPI overlay and training data examples: https://youtu.be/UqzLqjS0OR4
 
