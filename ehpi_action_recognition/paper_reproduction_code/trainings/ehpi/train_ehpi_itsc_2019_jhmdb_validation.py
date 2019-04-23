@@ -1,3 +1,4 @@
+import os
 import random
 from copy import copy
 from typing import List
@@ -15,17 +16,18 @@ from nobos_torch_lib.models.action_recognition_models.ehpi_small_net import EHPI
 from torch.utils.data import DataLoader, Subset
 from torchvision.transforms import transforms
 
-from ehpi_action_recognition import trainer_ehpi
+from ehpi_action_recognition.config import models_dir, ehpi_dataset_path
+from ehpi_action_recognition.trainer_ehpi import TrainerEhpi
 
 foot_indexes: List[int] = [11, 14]
 knee_indexes: List[int] = [10, 13]
 
 
-def get_training_set(image_size: ImageSize):
+def get_training_set(dataset_path: str, image_size: ImageSize):
     num_joints = 15
     left_indexes: List[int] = [3, 4, 5, 9, 10, 11]
     right_indexes: List[int] = [6, 7, 8, 12, 13, 14]
-    return EhpiDataset("/media/disks/beta/datasets/ehpi/JHMDB_ITSC-1/",
+    return EhpiDataset(os.path.join(dataset_path, "JHMDB_ITSC-1/"),
                        transform=transforms.Compose([
                            RemoveJointsOutsideImgEhpi(image_size),
                            RemoveJointsEhpi(indexes_to_remove=foot_indexes, indexes_to_remove_2=knee_indexes,
@@ -61,7 +63,7 @@ if __name__ == '__main__':
                     set_seed(0)  # FIXED SEED FOR DATASET SPLIT!
 
                     # Load full dataset
-                    train_full_set = get_training_set(image_size)
+                    train_full_set = get_training_set(os.path.join(ehpi_dataset_path, "jhmdb"), image_size)
                     test_full_set = copy(train_full_set)
                     test_full_set.transform = transforms.Compose([
                         RemoveJointsOutsideImgEhpi(image_size),
@@ -85,14 +87,14 @@ if __name__ == '__main__':
                     train_loader = DataLoader(train_set, batch_size=batch_size, sampler=sampler)
 
                     # config
-                    train_config = TrainingConfigBase("ehpi_jhmdb_{}".format(seed), "/media/disks/beta/models/test_repo")
+                    train_config = TrainingConfigBase("ehpi_jhmdb_{}".format(seed), os.path.join(models_dir, "val_jhmdb"))
                     train_config.learning_rate = lr
                     train_config.learning_rate_scheduler = LearningRateSchedulerExpotential(lr_decay=0.1, lr_decay_epoch=50)
                     train_config.weight_decay = weight_decay
                     train_config.num_epochs = 350
                     train_config.checkpoint_epoch = 10
 
-                    trainer = trainer_ehpi()
+                    trainer = TrainerEhpi()
                     losses, accuracies = trainer.train(train_loader, train_config, test_loader=val_loader, model=EHPISmallNet(21))
 
                     with open("losses_seed_{}.txt".format(seed), 'a') as the_file:

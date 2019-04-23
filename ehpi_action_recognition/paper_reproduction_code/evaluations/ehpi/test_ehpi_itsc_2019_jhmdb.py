@@ -51,5 +51,5 @@ def test_jhmdb():
 
 
 if __name__ == '__main__':
-    # test_gt()
+    test_gt()
     test_jhmdb()

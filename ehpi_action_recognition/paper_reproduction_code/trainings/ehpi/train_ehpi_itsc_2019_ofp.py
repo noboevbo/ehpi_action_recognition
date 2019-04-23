@@ -16,6 +16,7 @@ from nobos_torch_lib.models.detection_models.shufflenet_v2 import ShuffleNetV2
 from torch.utils.data import ConcatDataset, DataLoader
 from torchvision.transforms import transforms
 
+from ehpi_action_recognition.config import ehpi_dataset_path, models_dir
 from ehpi_action_recognition.trainer_ehpi import TrainerEhpi
 
 foot_indexes: List[int] = [11, 14]
@@ -299,7 +300,6 @@ def set_seed(seed):
 
 
 if __name__ == '__main__':
-    ehpi_dataset_path = "/media/disks/beta/datasets/ehpi/"
     batch_size = 128
     seeds = [0, 104, 123, 142, 200]
 
@@ -312,16 +312,17 @@ if __name__ == '__main__':
 
     }
     for seed in seeds:
+        use_case_dataset_path = os.path.join(ehpi_dataset_path, "use_case")
         for dataset_name, get_dataset in datasets.items():
             # Train set
             set_seed(seed)
-            train_set = get_dataset(image_size=ImageSize(1280, 720))
+            train_set = get_dataset(use_case_dataset_path, image_size=ImageSize(1280, 720))
             sampler = ImbalancedDatasetSampler(train_set, dataset_type=EhpiDataset)
             train_loader = DataLoader(train_set, batch_size=batch_size, sampler=sampler, num_workers=8)
 
             # config
             train_config = TrainingConfigBase("itsc2019_{}_seed_{}".format(dataset_name, seed),
-                                              "/media/disks/beta/models/itsc_2019_v2")
+                                              os.path.join(models_dir, "train_use_case"))
             train_config.learning_rate_scheduler = LearningRateSchedulerExpotential(lr_decay=0.1, lr_decay_epoch=50)
             train_config.learning_rate = 0.05
             train_config.weight_decay = 5e-4

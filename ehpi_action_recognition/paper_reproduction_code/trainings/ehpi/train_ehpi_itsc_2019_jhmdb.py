@@ -43,6 +43,24 @@ def set_seed(seed):
     torch.cuda.manual_seed_all(seed)
     np.random.seed(0)
 
+def train(training_set_path: str, model_path: str, num_epochs: int, seed: int, split: int):
+    # Train set
+    train_set = get_training_set(training_set_path, image_size)
+    train_set.print_label_statistics()
+    sampler = ImbalancedDatasetSampler(train_set, dataset_type=EhpiDataset)
+    train_loader = DataLoader(train_set, batch_size=batch_size, sampler=sampler)
+
+    # config
+    train_config = TrainingConfigBase("ehpi_jhmdb_{}_split_{}".format(seed, split), model_path)
+    train_config.learning_rate = lr
+    train_config.learning_rate_scheduler = LearningRateSchedulerExpotential(lr_decay=0.1, lr_decay_epoch=50)
+    train_config.weight_decay = weight_decay
+    train_config.num_epochs = num_epochs
+    train_config.checkpoint_epoch = num_epochs
+
+    trainer = TrainerEhpi()
+    trainer.train(train_loader, train_config, model=EHPISmallNet(21))
+
 if __name__ == '__main__':
     torch.backends.cudnn.benchmark = False
     torch.backends.cudnn.deterministic = True
@@ -53,24 +71,26 @@ if __name__ == '__main__':
     weight_decay = 5e-4
     lr = 0.05
 
-    # balances = [True, False]
+    print("Train JHMDB-1-GT")
     for seed in seeds:
         print("Seed: {}".format(seed))
         set_seed(seed)
 
-        # Train set
-        train_set = get_training_set(os.path.join(ehpi_dataset_path, "jhmdb", "JHMDB_ITSC-1-POSE"), image_size)
-        train_set.print_label_statistics()
-        sampler = ImbalancedDatasetSampler(train_set, dataset_type=EhpiDataset)
-        train_loader = DataLoader(train_set, batch_size=batch_size, sampler=sampler)
+        train(training_set_path=os.path.join(ehpi_dataset_path, "jhmdb", "JHMDB_ITSC-1-GT"),
+              model_path=os.path.join(models_dir, "train_jhmdb_gt"),
+              num_epochs=140,
+              seed=seed,
+              split=1)
 
-        # config
-        train_config = TrainingConfigBase("ehpi_jhmdb_{}_split_1".format(seed), os.path.join(models_dir, "train_ehpi"))
-        train_config.learning_rate = lr
-        train_config.learning_rate_scheduler = LearningRateSchedulerExpotential(lr_decay=0.1, lr_decay_epoch=50)
-        train_config.weight_decay = weight_decay
-        train_config.num_epochs = 140
-        train_config.checkpoint_epoch = 140
+    print("Train JHMDB")
+    for split in range(1, 4):
+        for seed in seeds:
+            print("Split: {}, Seed: {}".format(split, seed))
+            set_seed(seed)
 
-        trainer = TrainerEhpi()
-        trainer.train(train_loader, train_config, model=EHPISmallNet(21))
+            train(training_set_path=os.path.join(ehpi_dataset_path, "jhmdb", "JHMDB_ITSC-{}-POSE".format(split)),
+                  model_path=os.path.join(models_dir, "train_jhmdb"),
+                  num_epochs=200,
+                  seed=seed,
+                  split=split)
+
