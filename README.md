@@ -39,7 +39,7 @@ pip install -r ehpi_action_recognition/requirements.txt
 pip install --upgrade nobos_commons
 pip install --upgrade nobos_torch_lib
 cd ehpi_action_recognition
-sh get_models.sha
+sh get_models.sh
 
 ```
 An example showing the whole pipeline on the webcam can be executed as follows:

@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+mkdir ./ehpi_action_recognition/data
 mkdir ./ehpi_action_recognition/data/models
 cd ./ehpi_action_recognition/data/models
 
