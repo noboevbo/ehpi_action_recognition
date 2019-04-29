@@ -63,7 +63,7 @@ There are some configuration options available in run_ehpi.py:
 
 ## Known Bugs
 - The code runs on Windows, but there is somewhere a bug, so the whole thing runs on our system with only 10-30% of the FPS on Linux (Ubuntu 18.04).
-- When use_quick_n_dirty is set to zero there's sometimes a merge bug where a person gets to skeletons assigned.
+- When use_quick_n_dirty is set to zero there's sometimes a merge bug where a person gets two skeletons assigned.
 
 # Reconstruct paper results
 This repository contains code for our (submitted, as of 23.04.2019) publication on ITSC 2019 and ITS Journal Special Issue ITSC 2018. As the EHPI publication is not yet published and citable, we have used an LSTM approach for action recognition for the ITS Journal publication, which is based on the normalized EHPI inputs. We want to ensure that the results can be reproduced from our papers. Therefore, we provide our training and evaluation code in this repository. The results in our papers are reported as mean values from five training sessions with different seeds. As seeds we use 0, 104, 123, 142 and 200. We use fixed values so that the results are 100% reproducible, seeds 142 and 200 are randomly selected, 0 and 123 are seeds often used in other work and 104 is our office room number. 
