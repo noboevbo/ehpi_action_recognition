@@ -16,7 +16,7 @@ from nobos_torch_lib.models.action_recognition_models.ehpi_small_net import EHPI
 from torch.utils.data import DataLoader, Subset
 from torchvision.transforms import transforms
 
-from ehpi_action_recognition.config import models_dir, ehpi_dataset_path
+from ehpi_action_recognition.configs.config import models_dir, ehpi_dataset_path
 from ehpi_action_recognition.trainer_ehpi import TrainerEhpi
 
 foot_indexes: List[int] = [11, 14]

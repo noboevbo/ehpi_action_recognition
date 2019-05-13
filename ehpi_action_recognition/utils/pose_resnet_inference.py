@@ -20,7 +20,7 @@ from nobos_torch_lib.models.pose_estimation_2d_models.pose_resnet import PoseRes
 from nobos_torch_lib.utils.yolo_helper import bb_to_center_scale
 from torchvision.transforms.functional import to_tensor, normalize
 
-from ehpi_action_recognition.config import pose_resnet_config
+from ehpi_action_recognition.configs.config import pose_resnet_config
 from ehpi_action_recognition.utils.pose_resnet_transforms import get_affine_transform, transform_preds
 
 skeleton_converter_factory = SkeletonConverterFactory()

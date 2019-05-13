@@ -11,7 +11,7 @@ from nobos_torch_lib.configs.pose_estimation_2d_model_configs.pose_resnet_model_
 from nobos_torch_lib.models.pose_estimation_2d_models import pose_resnet
 from nobos_torch_lib.models.pose_estimation_2d_models.pose_resnet import PoseResNet
 
-from ehpi_action_recognition.config import yolo_v3_config
+from ehpi_action_recognition.configs.config import yolo_v3_config
 from ehpi_action_recognition.networks.detection_nets.detection_net_yolo_v3 import DetectionNetYoloV3, \
     get_default_detector
 from ehpi_action_recognition.networks.pose_estimation_2d_nets.pose2d_net_base import Pose2DNetBase

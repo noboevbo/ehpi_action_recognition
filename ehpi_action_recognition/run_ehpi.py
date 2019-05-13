@@ -3,7 +3,7 @@ from collections import deque
 from operator import itemgetter
 from typing import Dict, List, Tuple
 
-from ehpi_action_recognition.config import pose_resnet_config, pose_visualization_config, ehpi_model_state_file
+from ehpi_action_recognition.configs.config import pose_resnet_config, pose_visualization_config, ehpi_model_state_file
 
 import cv2
 import numpy as np
@@ -27,7 +27,7 @@ from nobos_torch_lib.models.detection_models.shufflenet_v2 import ShuffleNetV2
 from nobos_torch_lib.models.pose_estimation_2d_models import pose_resnet
 from scipy.special import softmax
 
-
+from ehpi_action_recognition.configurator import setup_application
 from ehpi_action_recognition.networks.action_recognition_nets.action_rec_net_ehpi import ActionRecNetEhpi
 from ehpi_action_recognition.networks.pose_estimation_2d_nets.pose2d_net_resnet import Pose2DNetResnet
 
@@ -60,6 +60,7 @@ def argmax(items):
 
 
 if __name__ == '__main__':
+    setup_application()
     # Settings
     skeleton_type = SkeletonStickman
     image_size = ImageSize(width=640, height=360)

@@ -8,7 +8,7 @@ from nobos_torch_lib.models.action_recognition_models.ehpi_small_net import EHPI
 from torch.utils.data import DataLoader
 from torchvision.transforms import transforms
 
-from ehpi_action_recognition.config import ehpi_dataset_path, models_dir
+from ehpi_action_recognition.configs.config import ehpi_dataset_path, models_dir
 from ehpi_action_recognition.tester_ehpi import TesterEhpi
 
 
