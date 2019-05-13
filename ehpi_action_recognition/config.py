@@ -1,8 +1,6 @@
 import os
 import torch.backends.cudnn
 
-import nobos_commons.tools.config as nobos_tools_config
-
 from nobos_commons.data_structures.configs.cache_config import CacheConfig
 from nobos_commons.data_structures.configs.pose_visualization_config import PoseVisualizationConfig
 from nobos_torch_lib.configs.detection_model_configs.yolo_v3_config import YoloV3Config
@@ -11,11 +9,11 @@ from nobos_torch_lib.configs.pose_estimation_2d_model_configs.pose_resnet_model_
 curr_dir = os.path.dirname(os.path.realpath(__file__))
 data_dir = os.path.join(curr_dir, "data")
 models_dir = os.path.join(data_dir, "models")
+
 # Cache Config
 cache_config = CacheConfig(cache_dir=os.path.join(data_dir, "cache"),
                            func_names_to_reload=[],
                            reload_all=False)
-nobos_tools_config.cfg.cache_config = cache_config
 
 # Torch Backend Settings
 torch.backends.cudnn.benchmark = False
