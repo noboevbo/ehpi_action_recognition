@@ -12,7 +12,7 @@ from nobos_commons.utils.file_helper import get_create_path, get_filename_from_p
     get_filename_without_extension
 from nobos_commons.visualization.pose2d_visualizer import save_humans_img
 
-from ehpi_action_recognition.configs.config import cache_config
+from ehpi_action_recognition.config import cache_config
 
 
 class Pose2DNetBase(object):

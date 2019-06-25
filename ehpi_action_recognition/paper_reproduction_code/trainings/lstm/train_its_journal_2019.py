@@ -12,7 +12,7 @@ from nobos_torch_lib.datasets.action_recognition_datasets.ehpi_dataset import Sc
 from torch.utils.data import ConcatDataset, DataLoader
 from torchvision.transforms import transforms
 
-from ehpi_action_recognition.configs.config import models_dir, ehpi_dataset_path
+from ehpi_action_recognition.config import models_dir, ehpi_dataset_path
 from ehpi_action_recognition.paper_reproduction_code.datasets.ehpi_lstm_dataset import EhpiLSTMDataset
 from ehpi_action_recognition.paper_reproduction_code.models.ehpi_lstm import EhpiLSTM
 from ehpi_action_recognition.trainer_ehpi import TrainerEhpi

@@ -3,7 +3,7 @@ from collections import deque
 from operator import itemgetter
 from typing import Dict, List, Tuple
 
-from ehpi_action_recognition.configs.config import pose_resnet_config, pose_visualization_config, ehpi_model_state_file
+from ehpi_action_recognition.config import pose_resnet_config, pose_visualization_config, ehpi_model_state_file
 
 import cv2
 import numpy as np

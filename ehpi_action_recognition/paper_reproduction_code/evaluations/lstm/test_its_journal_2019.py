@@ -9,7 +9,7 @@ from nobos_torch_lib.datasets.action_recognition_datasets.ehpi_dataset import No
 from torch.utils.data import DataLoader, ConcatDataset
 from torchvision.transforms import transforms
 
-from ehpi_action_recognition.configs.config import data_dir, models_dir, ehpi_dataset_path
+from ehpi_action_recognition.config import data_dir, models_dir, ehpi_dataset_path
 from ehpi_action_recognition.tester_ehpi import TesterEhpi
 from ehpi_action_recognition.paper_reproduction_code.datasets.ehpi_lstm_dataset import EhpiLSTMDataset
 from ehpi_action_recognition.paper_reproduction_code.models.ehpi_lstm import EhpiLSTM

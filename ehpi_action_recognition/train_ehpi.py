@@ -3,7 +3,7 @@ import random
 from typing import List
 
 import torch
-from ehpi_action_recognition.configs.config import ehpi_dataset_path
+from ehpi_action_recognition.config import ehpi_dataset_path
 from nobos_commons.data_structures.constants.dataset_part import DatasetPart
 from nobos_commons.data_structures.dimension import ImageSize
 from nobos_torch_lib.configs.training_configs.training_config_base import TrainingConfigBase

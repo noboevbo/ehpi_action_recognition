@@ -10,7 +10,7 @@ from nobos_torch_lib.models.detection_models.yolo_v3 import Darknet
 from nobos_torch_lib.utils.yolo_helper import write_results
 from torch.autograd import Variable
 
-from ehpi_action_recognition.configs.config import yolo_v3_config
+from ehpi_action_recognition.config import yolo_v3_config
 
 import numpy as np
 
