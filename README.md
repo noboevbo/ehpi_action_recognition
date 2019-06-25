@@ -123,9 +123,11 @@ And here to the evaluation code: [ITS Evaluation Code](ehpi_action_recognition/p
 Please cite the following papers if this code is helpful in your research.
 Currently the publications to this repository are submitted, but not yet accepted or published. I will update the entries as soon as I have feedback about the submissions. A preprint for the ITSC 2019 publication is available [here](https://arxiv.org/abs/1904.09140) on arxiv.org.
 
+Edit 2019-06-25: The EHPI ITSC 2019 publication is accepted and will be presented at ITSC 2019 (Oct 27-30). 
 ```bash
 @inproceedings{Ludl2019SimpleYE,
   title={Simple yet efficient real-time pose-based action recognition},
+  booktitle={ITSC},
   author={Dennis Ludl and Thomas Gulde and Crist'obal Curio},
   year={2019}
 }
