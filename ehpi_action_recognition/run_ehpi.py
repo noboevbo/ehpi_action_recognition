@@ -135,6 +135,7 @@ if __name__ == '__main__':
                 action_probabilities = softmax(action_logits)
                 actions[human_id] = []
                 predictions = get_stabelized_action_recognition(human_id, action_probabilities)
+                print(predictions)
                 pred_label, probability = argmax(predictions)
                 actions[human_id] = (Action[action_names[pred_label]], probability)
 

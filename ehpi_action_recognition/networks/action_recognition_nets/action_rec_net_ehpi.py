@@ -46,13 +46,13 @@ class ActionRecNetEhpi(object):
             tmp_dict['x'] = self.remove(tmp_dict)['x']
             ehpi_img = self.normalize(tmp_dict)['x']
 
-            action_img = np.transpose(ehpi_img, (2, 1, 0))
-            action_img *= 255
-            action_img = action_img.astype(np.uint8)
-            # action_img = cv2.resize(action_img, (action_img.shape[1] * 30, action_img.shape[0] * 30), cv2.INTER_NEAREST)
-            action_img = cv2.cvtColor(action_img, cv2.COLOR_BGR2RGB)
-            cv2.imshow("ehpi", action_img)
-            cv2.waitKey(1)
+            # action_img = np.transpose(np.copy(ehpi_img), (2, 1, 0))
+            # action_img *= 255
+            # action_img = action_img.astype(np.uint8)
+            # # action_img = cv2.resize(action_img, (action_img.shape[1] * 30, action_img.shape[0] * 30), cv2.INTER_NEAREST)
+            # action_img = cv2.cvtColor(action_img, cv2.COLOR_BGR2RGB)
+            # cv2.imshow("ehpi", action_img)
+            # cv2.waitKey(1)
             # cv2.imwrite(os.path.join(get_create_path("/media/disks/beta/dump/itsc_2019_imgs/ehpi"),
             #                          "{}.png".format(str(frame_nr).zfill(5))), action_img)
             net_input = np.zeros((1, 3, 32, 15), dtype=np.float32)
