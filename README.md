@@ -125,12 +125,7 @@ Currently the publications to this repository are submitted, but not yet accepte
 
 Edit 2019-06-25: The EHPI ITSC 2019 publication is accepted and will be presented at ITSC 2019 (Oct 27-30). 
 ```bash
-@inproceedings{Ludl2019SimpleYE,
-  title={Simple yet efficient real-time pose-based action recognition},
-  booktitle={ITSC},
-  author={Dennis Ludl and Thomas Gulde and Crist'obal Curio},
-  year={2019}
-}
+D. Ludl, T. Gulde, and C. Curio, “Simple yet efficient real-time pose-based action recognition,” in 22nd Int. Conf. on Intelligent Transportation Systems (ITSC), 2019, pp. 581–588, doi: 10.1109/ITSC.2019.8917128.
 ```
 
 
