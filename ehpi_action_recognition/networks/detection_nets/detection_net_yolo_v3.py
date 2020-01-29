@@ -54,7 +54,9 @@ class DetectionNetYoloV3(object):
             bottom_right = Coord2D(x=bottom_right[0].item(), y=bottom_right[1].item())
             class_id = int(x[-1].cpu())
             class_label = "{0}".format(COCO_CLASSES[class_id])
-            bbs.append(BoundingBox(top_left, bottom_right, label=class_label))
+            bb = BoundingBox(top_left, bottom_right, label=class_label)
+            if bb.width > 0 and bb.height > 0:
+                bbs.append(bb)
         return bbs
 
     @staticmethod
