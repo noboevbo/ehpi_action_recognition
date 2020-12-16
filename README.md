@@ -69,8 +69,8 @@ There are some configuration options available in run_ehpi.py:
 This repository contains code for our (submitted, as of 23.04.2019) publication on ITSC 2019 and ITS Journal Special Issue ITSC 2018. As the EHPI publication is not yet published and citable, we have used an LSTM approach for action recognition for the ITS Journal publication, which is based on the normalized EHPI inputs. We want to ensure that the results can be reproduced from our papers. Therefore, we provide our training and evaluation code in this repository. The results in our papers are reported as mean values from five training sessions with different seeds. As seeds we use 0, 104, 123, 142 and 200. We use fixed values so that the results are 100% reproducible, seeds 142 and 200 are randomly selected, 0 and 123 are seeds often used in other work and 104 is our office room number. 
 
 ## IEEE Intelligent Transportation Systems Conference (ITSC 2019)
-- Our datasets are available here: https://cogsys.reutlingen-university.de/pub/files/2019_04_ehpi/itsc_2019_datasets.tar.gz
-- Our trained models are available here: https://cogsys.reutlingen-university.de/pub/files/2019_04_ehpi/itsc_2019_models.tar.gz
+- Our datasets are available here: https://mkiserv114.reutlingen-university.de/pub/files/2019_04_ehpi/itsc_2019_datasets.tar.gz
+- Our trained models are available here: https://mkiserv114.reutlingen-university.de/pub/files/2019_04_ehpi/itsc_2019_models.tar.gz
 
 Here is an example of the standard setup that should allow our training and evaluation code to be used directly:
 ```bash
@@ -80,12 +80,12 @@ mkdir ./ehpi_action_recognition/data/models
 
 cd ./ehpi_action_recognition/data/datasets
 
-wget https://cogsys.reutlingen-university.de/pub/files/2019_04_ehpi/itsc_2019_datasets.tar.gz
+wget https://mkiserv114.reutlingen-university.de/pub/files/2019_04_ehpi/itsc_2019_datasets.tar.gz
 tar -xvf itsc_2019_datasets.tar.gz
 
 cd ../models
 
-wget https://cogsys.reutlingen-university.de/pub/files/2019_04_ehpi/itsc_2019_models.tar.gz
+wget https://mkiserv114.reutlingen-university.de/pub/files/2019_04_ehpi/itsc_2019_models.tar.gz
 tar -xvf itsc_2019_models.tar.gz
 
 ```
@@ -96,8 +96,8 @@ Here is the direct link to the training code for the Use Case dataset: [Use Case
 And here to the evaluation code: [Use Case Evaluation Code](ehpi_action_recognition/paper_reproduction_code/evaluations/ehpi/test_ehpi_itsc_2019_ofp.py)
 
 ## IEEE Transactions on Intelligent Transportation Systems - Special Issue 21st IEEE Intelligent Transportation Systems Conference (ITSC 2018)
-- Our datasets are available here: https://cogsys.reutlingen-university.de/pub/files/2019_04_ehpi/its_2019_datasets.tar.gz
-- Our trained models are available here: https://cogsys.reutlingen-university.de/pub/files/2019_04_ehpi/its_2019_lstm_models.tar.gz
+- Our datasets are available here: https://mkiserv114.reutlingen-university.de/pub/files/2019_04_ehpi/its_2019_datasets.tar.gz
+- Our trained models are available here: https://mkiserv114.reutlingen-university.de/pub/files/2019_04_ehpi/its_2019_lstm_models.tar.gz
 
 Here is an example of the standard setup that should allow our training and evaluation code to be used directly:
 ```bash
@@ -107,12 +107,12 @@ mkdir ./ehpi_action_recognition/data/models
 
 cd ./ehpi_action_recognition/data/datasets
 
-wget https://cogsys.reutlingen-university.de/pub/files/2019_04_ehpi/its_2019_datasets.tar.gz
+wget https://mkiserv114.reutlingen-university.de/pub/files/2019_04_ehpi/its_2019_datasets.tar.gz
 tar -xvf its_2019_datasets.tar.gz
 
 cd ../models
 
-wget https://cogsys.reutlingen-university.de/pub/files/2019_04_ehpi/its_2019_lstm_models.tar.gz
+wget https://mkiserv114.reutlingen-university.de/pub/files/2019_04_ehpi/its_2019_lstm_models.tar.gz
 tar -xvf its_2019_lstm_models.tar.gz
 
 ```
