@@ -1,3 +1,15 @@
+We've released the code for PedRecNet and EHPI3D which provides:
+- Human BB Detection (via YoloV4).
+- Human Tracking
+- 2D Human Pose Estimation
+- 3D Human Pose Estimation
+- Human Body Orientation (currently only Phi) Estimation
+- Human Head Orientation (currently only Phi) Estimation
+- "Pedestrian recognizes the camera" Estimation
+- Human Action Recognition (via EHPI3D)
+
+You can find the new repository here: https://github.com/noboevbo/PedRec
+
 This repository contains the code for our real-time pose based action recognition pipeline, which was introduced in our paper [Simple yet efficient real-time pose-based action recognition](https://arxiv.org/abs/1904.09140) (submitted to ITSC 2019, as of 2019-04-23). There is also paper result reconstruction code for another publication (submitted to Transactions on ITS SE ITSC 2018, as of 2019-04-23), XYZ, based on an alternative approach using LSTM.
 
 The approach is based on encoding human poses over a period of time in an image-like data format (Encoded Human Pose Images) that can then be classified using standard CNNs. The entire pipeline is lightweight and runs 20-60 FPS, depending on settings. It was tested on an XMG Ultra 17 Laptop with an i7-8700 Desktop CPU, NVIDIA GTX1080 GPU, 32GB RAM using KDE Neon (Ubuntu 18.04) and CUDA 10.0 with CUDNN 7.5.
